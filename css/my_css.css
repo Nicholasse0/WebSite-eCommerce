@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.insHome{
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+}
+.bg-blue{
+    background: rgb(40, 40, 231);
+}
+
+.c-blue{
+  color: rgb(40, 40, 231);
+}
+
+.bg-green{
+    background: green;
+}
+/* @extend display-flex; */
+display-flex, .signup-content, .form-row, .form-radio, .select-icon, .select-icon i {
+    display: flex;
+    display: -webkit-flex; 
+  }
+  
+  body, html {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .desc {
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    font-weight: bold;
+    color:  rgb(40, 40, 231);
+    font-size: 28px;
+    text-transform: uppercase;
+    padding-left: 20;
+  }
+  
+  body {
+    font-weight: 400;
+  }
+  
+  .container {
+    width: 100%;
+    position: relative;
+    background: #fff; 
+  }
+  
+  .signup-form{
+    margin: 5%;
+    width: 500px;
+  }
+  
+  .register-form {
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+    opacity: 0.9; 
+    border-radius: 20px;
+    margin-left: 17%;
+  }
+  
+  .form-row {
+    margin: 0 -15px; 
+  }
+  
+  .form-row .form-group {
+    width: 100%;
+    padding: 0 25px; 
+  }
+  
+  .form-group {
+    position: relative; 
+  }
+  
+  .form-submit {
+    text-align: center;
+  }
+  
+  #button_signin{
+    color: #f8f9fa;
+    background-color: #dc3545;
+  }
+  
+  
+  .my_button{
+    color:red;
+    background-color: transparent;
+    background-image: none;
+  }
+  
+  .my_button:hover {
+    color: rgb(205, 181, 181);
+  }
+  
+  
+  /*Tutti gli elemnti invalid non compaiono a video*/
+  .invalid{
+    display: none;
+    font-size: 70%;
+    color: red;
+  }
+  
+  .form-control{
+    border-color:rgb(40, 40, 231);
+  }
+  
+  .sizeDivButton{
+    height: 50px;
+    width: 100%;
+  }
+  
+  #sfondo{
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    padding-top: 50px;
+  }
+  
+  .img-modal{
+    border-radius: 15px;
+  }
+
+
+/*MIE*/
+.bg-nav{
+  background: rgb(28, 102, 163);
+}
+
+.bar-button{
+    height: 100%;
+    line-height: 60px;
+    width: 100%;
+    color: #fff;
+    border-bottom: none;
+    white-space:nowrap;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+  }
+  
+.bar-button:hover {
+    background-color: rgb(0, 102, 255);
+    color: white;
+  }
+
+/*Rimuove le freccie su typer="number"*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
