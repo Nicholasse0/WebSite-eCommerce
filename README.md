@@ -1,2 +1,2 @@
 # WebSite-eCommerce
-Progetto per l'esame di Linguaggi e Tecnologie per il WEB
+Project for the exam of Languages and Technologies for the WEB
