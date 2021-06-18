@@ -43,9 +43,8 @@
         });
         </script>
 
-        <title> ECN - login </title>
+        <title> ECN - Login </title>
     </head>
-    <!--<body background="../images/Comune.jpg" style="background-repeat: no-repeat; background-size: cover;">-->
     <body  onload="cookibar()">
         <div class="alert text-center cookibar" role="alert">
             <div class="acceptcookies">

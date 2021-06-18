@@ -50,7 +50,7 @@ if (!(isset($_POST['conferma_password']))) {
             $password_utente = md5($_POST['password']);
 
             $dbconn = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-                or die('Could not connect'. pg_last_error());
+            or die('Impossibile connettersi al database' . pg_last_error());
 
             $q1 = "select * from utenti where email=$1";
             $result = pg_query_params($dbconn, $q1, array($email_utente));
@@ -90,14 +90,15 @@ if (!(isset($_POST['conferma_password']))) {
                 if (!$mail->Send()) {
                     echo "
                     <div class='register-form'>
-                    <meta http-equiv='refresh' content='5;url=signin.php'> 
+                    <meta http-equiv='refresh' content='5;url=signin.php'>
                     <div class='msgWelcome'>
                         Qualcosa nell'invio dell'e-mail è andato storto, ti stiamo reindirizzando alla pagina di registrazione.
                     </div>
                     <br>
                     </div>
                     ";
-                } else {
+                }
+                else {
                     echo "
                     <form class='register-form' id='formcodConferma' name='formcodConferma' action='accettazioneEmail.php' method='POST' onsubmit='return validacodConferma()'>
                         <div class='form-row'>    
@@ -109,8 +110,8 @@ if (!(isset($_POST['conferma_password']))) {
                                 <input class='form-control insEmail' type='number' name='codConferma' id='codConferma' placeholder='Codice di conferma'/>
                             </div>
                             <div class='form-group'>
-                                <a href='../Accesso/login.php'>
-                                    <button class='btn btn-outline-success' >Ok</button>
+                                <a>
+                                    <button class='btn btn-outline-success'>Ok</button>
                                 </a>
                             </div>
                             <br>

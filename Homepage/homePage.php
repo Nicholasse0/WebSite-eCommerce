@@ -8,46 +8,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Nicholas">
 
-        <title> ECN </title>
+        <title> ECN - home </title>
 
         <link href="../css/homePage.css" type="text/css" rel="stylesheet">
-        <link href="../css/carousel.css" type="text/css" rel="stylesheet">
-    
+        <link href="../css/carousel.css" type="text/css" rel="stylesheet"> 
     </head>
     <body>
     <?php
         $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-            or die('Impossibile connettersi al database' . pg_last_error());
-
-        /*
-        //Nome
-        $q1 = "Select nome from utenti where email= $1";
-        $result = pg_query_params($dbconnect, $q1, array($_SESSION['email']));
-        $row = pg_fetch_row($result);
-        $_SESSION['nome'] = $row[0];
-
+        or die('Could not connect' . pg_last_error());
+        
         //Settaggio tabella carrello
         if (isset($_GET['nome'])) { //devo aggiornare la tabella
             $nome_prodotto = $_GET['nome'];
             $q1 = "Select * from prodotti where nome= $1";
             $result = pg_query_params($dbconnect, $q1, array($nome_prodotto));
-            $row = pg_fetch_row($result); // riga tabella prodotti del nome
+            $row = pg_fetch_row($result); //riga tabella prodotti del nome
 
-            $q1 = "Select * from carrello where nome= $1";
+            $q1 = "Select * from carrelli where nome= $1";
             $result = pg_query_params($dbconnect, $q1, array($nome_prodotto));
 
             $riga = pg_fetch_row($result);
             if ($riga == FALSE) {
-                $q1 = "insert into carrello values($1,$2,$3,$4)";
-                $result = pg_query_params($dbconnect, $q1, array($row[0], $row[1], $row[2], $_GET['quanti']));
+                $q1 = "insert into carrelli values($1,$2,$3,$4,$5)";
+                $result = pg_query_params($dbconnect, $q1, array($row[0], $row[1], $row[2], $_GET['quanti'],$row[4]));
             } else { //fai addizione
-                //UPDATE tableSET column1 = value1 where nome=dsada
-
                 $qu = $_GET['quanti'] + $riga[3];
-                $q1 = "update carrello SET quantià=$1 where nome=$2";
+                $q1 = "update carrelli SET quantità=$1 where nome=$2";
                 $res = pg_query_params($dbconnect, $q1, array($qu, $_GET['nome']));
             }
-
 
             //Togli quantita from db
             $q1 = "Select * from prodotti where nome= $1";
@@ -55,18 +44,10 @@
             $row = pg_fetch_row($result);
             $qu = $row[3] - $_GET['quanti'];
 
-            $q1 = "update prodotti SET quantià=$1 where nome=$2";
+            $q1 = "update prodotti SET quantità=$1 where nome=$2";
             $res = pg_query_params($dbconnect, $q1, array($qu, $_GET['nome']));
         }
-    
-
-
-        $email = $_SESSION['email'];
-        $password = $_SESSION['password'];
-        $q1 = "Select * from utenti where email= $1"; //Quel $1 sta a significare che il valore ad email ancora deve essere stanziato
-        $result = pg_query_params($dbconnect, $q1, array($email));
-        $row = pg_fetch_row($result);
-    */
+        
     ?>
         <div class="header">
             <div class="container">
@@ -82,15 +63,15 @@
                             <li><a href="../Prodotti/Smartphone.php"> Smartphone </a></li>
                             <li><a href="../Prodotti/Smartwatch.php"> Smartwatch </a></li>
                             <li><a href="../Prodotti/Auricolari.php"> Auricolari </a></li>
-                            <li><a href="../AboutUs/AboutUs.html"> About us </a></li>
+                            <li><a href="../AboutUs/AboutUs.html"> Chi siamo </a></li>
                         </ul>
                     </nav>
-                    <img src="../Img/cart_2.png" width="30px" height="30px">
+                        <li><a href="../Carrello/ShoppingBag.php"> <img src="../Img/cart_2.png" width="30px" height="30px"> </a></li>
                 </div>
                 <div class = "row">
                     <div class = "col-2">
                         <h1> I tuoi prodotti sono unici. Anche il tuo negozio dovrebbe esserlo. </h1>
-                        <p> Gli sconti che sognavi! </p>
+                        <p> Non serve avere tutto, ma tutto quello che serve! </p>
                         <!-- <a href="" class ="btn"> Esplora </a> -->
                     </div>
                     <div class="col-2">
@@ -99,7 +80,7 @@
                 </div>
             </div>
         </div>
-
+ 
 
         <!-- Carosello best seller -->
 
@@ -239,25 +220,26 @@
         </div>
         
 
+
         <!-- Brands -->
 
         <div class="brands">
             <div class="small-container">
                 <div class="row">
                     <div class="col-5">
-                        <img src="../Img/Brands/one-plus-logo.png">
+                        <img src="../Img/Brands/one-plus-logo.png" id="doc1">
                     </div>
                     <div class="col-5">
-                        <img src="../Img/Brands/apple-logo.png">
+                        <img src="../Img/Brands/apple-logo.png" id="doc2">
                     </div>
                     <div class="col-5">
-                        <img src="../Img/Brands/LG-Logo.png">
+                        <img src="../Img/Brands/LG-Logo.png" id="doc3">
                     </div>
                     <div class="col-5">
-                        <img src="../Img/Brands/samsung-logo.png">
+                        <img src="../Img/Brands/samsung-logo.png" id="doc4">
                     </div>
                     <div class="col-5">
-                        <img src="../Img/Brands/logo-paypal.png">
+                        <img src="../Img/Brands/logo-paypal.png" id="doc5">
                     </div>
                 </div>
             </div>
@@ -309,7 +291,6 @@
         <!-- Script per il carosello -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     </body>
     
 </html>

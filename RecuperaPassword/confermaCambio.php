@@ -42,17 +42,18 @@ session_start();
                         $email_utente = $_SESSION['email'];
 
                         if ($_SESSION['codConferma'] == $_POST['codConferma']) { //Devo aggiungere l'utente al database
-                            $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-                            or die('Impossibile connettersi al database' . pg_last_error());
+                            $dbconn = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
+                                or die('Impossibile connettersi al database' . pg_last_error());
                             $q1 = "update utenti set password=$1 where email=$2;"; //Quel $1 sta a significare che il valore ad email ancora deve essere stanziato
-                            $result = pg_query_params($dbconnect, $q1, array($passwordUtente, $email_utente));
+                            $result = pg_query_params($dbconn, $q1, array($passwordUtente, $email_utente));
                             echo "
                             <meta http-equiv='refresh' content='5;../Accesso/login.php'> 
                             <div class='msgWelcome'>
                                 Registrazione completata con successo, ti stiamo reindirizzando alla pagina di login.
                             </div>
                             ";
-                        } else {
+                        } 
+                        else {
                             echo "
                             <meta http-equiv='refresh' content='5;../Registrazione/signin.php'> 
                             <div class='msgWelcome'>

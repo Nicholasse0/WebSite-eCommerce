@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Nicholas">
 
-        <title> ECN </title>
+        <title> ECN - Auricolari </title>
 
         <link href="../css/homePage.css" type="text/css" rel="stylesheet">
     
@@ -16,63 +16,15 @@
     <body>
     <?php
         $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-            or die('Impossibile connettersi al database' . pg_last_error());
+        or die('Impossibile connettersi al database' . pg_last_error());
 
-        /*
-        //Nome
-        $q1 = "Select nome from utenti where email= $1";
-        $result = pg_query_params($dbconnect, $q1, array($_SESSION['email']));
-        $row = pg_fetch_row($result);
-        $_SESSION['nome'] = $row[0];
-
-        //Settaggio tabella carrello
-        if (isset($_GET['nome'])) { //devo aggiornare la tabella
-            $nome_prodotto = $_GET['nome'];
-            $q1 = "Select * from prodotti where nome= $1";
-            $result = pg_query_params($dbconnect, $q1, array($nome_prodotto));
-            $row = pg_fetch_row($result); // riga tabella prodotti del nome
-
-            $q1 = "Select * from carrello where nome= $1";
-            $result = pg_query_params($dbconnect, $q1, array($nome_prodotto));
-
-            $riga = pg_fetch_row($result);
-            if ($riga == FALSE) {
-                $q1 = "insert into carrello values($1,$2,$3,$4)";
-                $result = pg_query_params($dbconnect, $q1, array($row[0], $row[1], $row[2], $_GET['quanti']));
-            } else { //fai addizione
-                //UPDATE tableSET column1 = value1 where nome=dsada
-
-                $qu = $_GET['quanti'] + $riga[3];
-                $q1 = "update carrello SET quantià=$1 where nome=$2";
-                $res = pg_query_params($dbconnect, $q1, array($qu, $_GET['nome']));
-            }
-
-
-            //Togli quantita from db
-            $q1 = "Select * from prodotti where nome= $1";
-            $result = pg_query_params($dbconnect, $q1, array($nome_prodotto));
-            $row = pg_fetch_row($result);
-            $qu = $row[3] - $_GET['quanti'];
-
-            $q1 = "update prodotti SET quantià=$1 where nome=$2";
-            $res = pg_query_params($dbconnect, $q1, array($qu, $_GET['nome']));
-        }
-    
-
-
-        $email = $_SESSION['email'];
-        $password = $_SESSION['password'];
-        $q1 = "Select * from utenti where email= $1"; //Quel $1 sta a significare che il valore ad email ancora deve essere stanziato
-        $result = pg_query_params($dbconnect, $q1, array($email));
-        $row = pg_fetch_row($result);
-    */
-    ?>
-        <div class="header" style="background-image:linear-gradient(black, rgb(248, 183, 228)">
+        ?>
+        <div class="header" style="background-image:linear-gradient(black, rgb(248, 183, 228))">
             <div class="container">
                 <div class = "navbar">
                     <div class = "logo">
                         <a href="../Homepage/homePage.php">
-                            <img src="../Img/Logo_3.png" width="175px">
+                            <a href="../Homepage/homePage.php"> <img src="../Img/Logo_3.png" width="175px">
                         </a>
                     </div>
                     <nav>
@@ -81,10 +33,10 @@
                             <li><a href="../Prodotti/Smartphone.php"> Smartphone </a></li>
                             <li><a href="../Prodotti/Smartwatch.php"> Smartwatch </a></li>
                             <li><a href="#"> Auricolari </a></li>
-                            <li><a href="../AboutUs/AboutUs.html"> About us </a></li>
+                            <li><a href="../AboutUs/AboutUs.html"> Chi siamo </a></li>
                         </ul>
                     </nav>
-                    <img src="../Img/cart_2.png" width="30px" height="30px">
+                        <li><a href="../Carrello/ShoppingBag.php"> <img src="../Img/cart_2.png" width="30px" height="30px"> </a></li>
                 </div>
                 <div class = "row">
                     <div class="col-2">
@@ -200,7 +152,7 @@
         <div class="brands">
             <div class="small-container">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-5" id="doc1">
                         <img src="../Img/Brands/one-plus-logo.png">
                     </div>
                     <div class="col-5">
@@ -218,6 +170,7 @@
                 </div>
             </div>
         </div>
+
 
 
         <!-- Footer -->

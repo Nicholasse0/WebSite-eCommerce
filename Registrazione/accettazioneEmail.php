@@ -34,7 +34,6 @@ session_start();
             <div class="signin-form">
                 <div class="register-form">
                     <?php
-
                     if (!(isset($_POST['codConferma']))) {
                         header("Location: ../Registrazione/signin.php");
                     } else {
@@ -44,11 +43,11 @@ session_start();
                     $email_utente = $_SESSION['email'];
 
                     if ($_SESSION['codConferma'] == $_POST['codConferma']) { //Devo aggiungere l'utente al database
-                        $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-                        or die('Impossibile connettersi al database' . pg_last_error());
+                        $dbconn = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
+                    or die('Impossibile connettersi al database' . pg_last_error());
 
                         $q1 = "insert into utenti values($1,$2,$3,$4);"; //Quel $1 sta a significare che il valore ad email ancora deve essere stanziato
-                        $result = pg_query_params($dbconnect, $q1, array($email_utente, $nome_utente, $cognome_utente, $passwordUtente));
+                        $result = pg_query_params($dbconn, $q1, array($email_utente, $nome_utente, $cognome_utente, $passwordUtente));
 
                         echo "
                         <meta http-equiv='refresh' content='5;../Accesso/login.php'> 

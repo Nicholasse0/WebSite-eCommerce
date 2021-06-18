@@ -59,7 +59,7 @@ if (!(isset($_POST['email']))) {
             $_SESSION['codConferma'] = $codConferma;
 
             $dbconn = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-                or die('Could not connect'. pg_last_error());
+            or die('Impossibile connettersi al database' . pg_last_error());
 
             $q1 = "select * from utenti where email=$1";
             $result = pg_query_params($dbconn, $q1, array($email_utente));
@@ -124,7 +124,7 @@ if (!(isset($_POST['email']))) {
                             </div>
                         </div>
                         <div class='form-group'>
-                            <a href='../Accesso/login.php'>
+                            <a>
                                 <button class='btn btn-outline-success'>Ok</button>
                             </a>
                         </div>

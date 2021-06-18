@@ -4,6 +4,7 @@ session_start();
 <html>
 
 <?php
+
     if (isset($_POST['input']))
         $temp = $_POST['input'];
     else
@@ -18,76 +19,98 @@ session_start();
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Nicholas">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
 
         <title> ECN </title>
 
         <link href="../css/homePage.css" type="text/css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="jquery.nice-number.js"></script>
+        <script type="text/javascript"> 
+            $(function(){
+                $('input[type="number"]').niceNumber();
+            });
+        </script>
+
+        <script type="text/javascript" src="../vue/vue.min.js"> </script>
     
     </head>
     <body>
-    <?php
-        $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
-            or die('Impossibile connettersi al database' . pg_last_error());
-    ?>
-        <div class="header">
-            <div class="container">
-                <div class = "navbar">
-                    <div class = "logo">
-                        <a href="../Homepage/homePage.php">
-                            <img src="../Img/Logo_3.png" width="175px">
-                        </a>
+    <div id="app">
+        <?php
+            $dbconnect = pg_connect("host=localhost port=5432 dbname=eCommerce user=postgres password=Nicholas1998")
+            or die('Could not connect' . pg_last_error());
+        ?>
+            <div class="header">
+                <div class="container">
+                    <div class = "navbar">
+                        <div class = "logo">
+                            <a id="casa"  href="../Homepage/homePage.php">
+                                <img src="../Img/Logo_3.png" width="175px">
+                            </a>
+                        </div>
+                        <nav>
+                            <ul>
+                                <li><a href="../Homepage/homePage.php"> Home </a></li>
+                                <li><a href="../Prodotti/Smartphone.php"> Smartphone </a></li>
+                                <li><a href="../Prodotti/Smartwatch.php"> Smartwatch </a></li>
+                                <li><a href="../Prodotti/Auricolari.php"> Auricolari </a></li>
+                                <li><a href="../AboutUs/AboutUs.php"> About us </a></li>
+                            </ul>
+                        </nav>
+                            <li><a id="car" href="../Carrello/ShoppingBag.php"> <img src="../Img/cart_2.png" width="30px" height="30px"> </a></li>
                     </div>
-                    <nav>
-                        <ul>
-                            <li><a href="../Homepage/homePage.php"> Home </a></li>
-                            <li><a href="../Prodotti/Smartphone.php"> Smartphone </a></li>
-                            <li><a href="../Prodotti/Smartwatch.php"> Smartwatch </a></li>
-                            <li><a href="../Prodotti/Auricolari.php"> Auricolari </a></li>
-                            <li><a href="../AboutUs/AboutUs.html"> About us </a></li>
-                        </ul>
-                    </nav>
-                    <img src="../Img/cart_2.png" width="30px" height="30px">
                 </div>
             </div>
-        </div>
         
-        <!-- Prodotto -->
-        <div class ="categories">
-            <div class="small-container single-product">
-                <div class="row ">
-                    <?php
-                        $q1 = "select * from prodotti where prodotti.nome = '$temp' ;";
-                        $result = pg_query($dbconnect, $q1);
-                        $array = pg_fetch_row($result);
-                        echo "
-                            <div class='col-2'>
-                                <div style='background-color: rgb(239, 239, 239)'>
-                                <img src='../Img/Prodotti/$array[1]_1.png' width='100%' id='ProductImg'>
+            <!-- Prodotto -->
+            <div class ="categories">
+                <div class="small-container single-product">
+                    <div class="row ">
+                        <?php
+                            $q1 = "select * from prodotti where prodotti.nome = '$temp' ;";
+                            $result = pg_query($dbconnect, $q1);
+                            $array = pg_fetch_row($result);
+
+                            echo "
+                                <div class='col-2'>
+                                    <div style='background-color: rgb(239, 239, 239)'>
+                                    <img src='../Img/Prodotti/$array[1]_1.png' width='100%' id='ProductImg'>
                                 </div>
-                                <div class='small-img-row'>
-                                    <div class='small-img-col'>
-                                        <img src='../Img/Prodotti/$array[1]_1.png' width='100%' class='small-img'>
+                                    <div class='small-img-row'>
+                                        <div class='small-img-col'>
+                                            <img src='../Img/Prodotti/$array[1]_1.png' width='100%' class='small-img'>
+                                        </div>
+                                        <div class='small-img-col'>
+                                            <img src='../Img/Prodotti/$array[1]_2.png' width='100%' class='small-img'>
+                                        </div>
+                                        <div class='small-img-col'>
+                                            <img src='../Img/Prodotti/$array[1]_3.png' width='100%' class='small-img'>
+                                        </div>
+                                        <div class='small-img-col'>
+                                            <img src='../Img/Prodotti/$array[1]_4.png' width='100%' class='small-img'>
+                                        </div>
+                                        
                                     </div>
-                                    <div class='small-img-col'>
-                                        <img src='../Img/Prodotti/$array[1]_2.png' width='100%' class='small-img'>
-                                    </div>
-                                    <div class='small-img-col'>
-                                        <img src='../Img/Prodotti/$array[1]_3.png' width='100%' class='small-img'>
-                                    </div>
-                                    <div class='small-img-col'>
-                                        <img src='../Img/Prodotti/$array[1]_4.png' width='100%' class='small-img'>
-                                    </div>
+                                    
                                 </div>
-                            </div>
-                            <div class ='col-2'>
-                                <h3> $array[1] </h3>
-                                <p> $array[4] €</p>
-                                <a href ='' class='btn'> Aggiungi al carrello </a>
-                                <h3 style='font-size: 20px'> Dettagli prodotto </h3>
-                                <p> $array[2] </p>
-                            </div>
-                        ";
-                    ?>
+                                
+                                <div class ='col-2'>
+                                    <h3> $array[1]  </h3>
+                                    <p> $array[4] €</p>
+                                    <br>
+                                    <div class=''>
+                                        <input readonly type='number' value='0' id='inp' min='0' max='$array[3]' step='1'/>
+                                    </div>
+                                    <a href ='../Carrello/ShoppingBag.php'>
+                                    <button class='btn' value='$array[1]' id='adt' role='button' onclick='aggiungi()'> Aggiungi al carrello </button>
+                                    </a>
+                                    <h3 style='font-size: 20px'> Dettagli prodotto </h3>
+                                    <p> $array[2] </p>
+                                </div>
+                            ";
+                        ?>
                     </div>
                 </div>
             </div>
@@ -194,7 +217,12 @@ session_start();
                 <p class="copyright"> Copyright 2021 - ECN </p>
             </div>
         </div>
+    </div>
+    <!-- Script per il carrello -->
+    <script type="text/javascript" src="../vue/carrello.js"></script>
+
     </body>
+
 
     <!-- Script seleziona Img -->
 

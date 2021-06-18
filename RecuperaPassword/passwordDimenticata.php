@@ -42,7 +42,6 @@
 
         <title> ECN - Recupera Password </title>
     </head>
-    <!--<body background="../images/Comune.jpg" style="background-repeat: no-repeat; background-size: cover;">-->
     <body  onload="cookibar()">
         <br><br><br><br>
         <div class="signup-content justify-content-center formLogIn">

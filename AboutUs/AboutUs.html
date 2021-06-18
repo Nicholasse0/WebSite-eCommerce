@@ -1,0 +1,112 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Nicholas">
+
+        <title> ECN </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+
+        <link href="../css/homePage.css" type="text/css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    
+    </head>
+    <body>
+    
+    <div id="app">
+        <div class="header">
+            <div class="container">
+                <div class = "navbar">
+                    <div class = "logo">
+                        <a href="../Homepage/homePage.php"> <img src="../Img/Logo_3.png" width="175px">
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="../Homepage/homePage.php"> Home </a></li>
+                            <li><a href="../Prodotti/Smartphone.php"> Smartphone </a></li>
+                            <li><a href="../Prodotti/Smartwatch.php"> Smartwatch </a></li>
+                            <li><a href="../Prodotti/Auricolari.php"> Auricolari </a></li>
+                            <li><a href="#"> Chi siamo </a></li>
+                        </ul>
+                    </nav>
+                        <li><a href="../Carrello/ShoppingBag.php"> <img src="../Img/cart_2.png" width="30px" height="30px"> </a></li>
+                </div>
+            </div>
+        </div>
+
+        <!--About Us Page-->
+        <div class = "about wrapper ">
+            <div class="about-left"> 
+                <div class="about-left-content">
+                    <div>
+                        <div class="shadow">
+                            <div class="about-img">
+                                <img src="../Img/Admin/profilo-citz.png" alt="about image">
+                            </div>
+                        </div>
+                        <h2> Francesco<br> Citeroni</h2>
+                        <h3> Studente </h3>
+                    </div>
+                    
+                    <ul class ="icons">
+                        <li onclick="location.href='https://www.facebook.com/francesco.citeroni'"> <i class="fab fa-facebook-f" ></i></li>
+                        <li onclick="location.href='https://twitter.com/FrancescoCiter1'"> <i class="fab fa-twitter"></i></li>
+                        <li onclick="location.href='https://www.instagram.com/citttz_'"> <i class="fab fa-instagram"></i></li>
+                    </ul>
+                </div>
+
+                <div class="about-right-content">
+                    <div>
+                        <div class="shadow">
+                            <div class="about-img">
+                                <img src="../Img/Admin/profilo-nicholas.png" alt="about image">
+                            </div>
+                        </div>
+                        <h2> Nicholas<br> Brachelente</h2>
+                        <h3> Studente </h3>
+                    </div>
+                    
+                    <ul class ="icons">
+                    <li onclick="location.href='https://www.facebook.com/nicholas.brachelente'"> <i class="fab fa-facebook-f" ></i></li>
+                        <li onclick="location.href='https://www.instagram.com/nicholasse_'"> <i class="fab fa-instagram"></i></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="about-down">
+            <h1>Ciao<span>!</span></h1>
+            <h2>Siamo due studenti di ingegneria informatica dell'università "La Sapienza",
+                    e questo è un sito web realizzato per il progetto di Linguaggi e Tecnologie per il WEB.
+            </h2>
+            <br>
+            <a href="#" id="more">Scopri di più</a>
+            <div id="caricaPage" class="about-para">
+                
+            </div>
+        </div>
+
+
+       
+    </div>
+    <script type="text/javascript" src="../vue/carrello.js"></script>
+
+    <!-- Script doc brands -->
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>   
+
+    <script>
+        $(document).ready(function(){
+            $("#more").click(function(){
+                $("#caricaPage").load("relazione.html", function(responseTxt, statusTxt, xhr){
+                });
+                $("html, body").animate({ scrollTop: $(document).height()}, 700);
+            });
+        }); 
+    </script>
+    </body>
+
+</html>
